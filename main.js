@@ -1,5 +1,5 @@
 // VOORRAAD ARRAY MET TV'S
-const inventory1 = [
+const inventory2 = [
   {
     type: '43PUS6504/12',
     name: '4K TV',

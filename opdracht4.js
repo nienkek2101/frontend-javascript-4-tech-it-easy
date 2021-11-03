@@ -1,5 +1,4 @@
-// VOORRAAD ARRAY MET TV'S
-const inventory = [
+const inventory5 = [
     {
         type: '43PUS6504/12',
         name: '4K TV',
@@ -162,96 +161,22 @@ const inventory = [
     },
 ];
 
-// #### Opdracht 2 - Elementen in de DOM plaatsen
-// _Tip_: wanneer we meerdere waardes uit een array willen terugbrengen tot één getal of één string, gebruik je hier gewoon
-// een oude vertrouwde for-loop voor!
-//
-// * **Opdracht 2a:** Hoeveel tv's zijn er al verkocht? Schrijf een script dat dit berekent. Log de uitkomst in de console.
-
-// aantal verkochte tv's per type berekenen
-// totaal aantal verkochte tv's berekenen --> opslaan in een nieuwe variabele
-
-
-// for (let i = 0; i < inventory.length; i++) {
-//     let soldPerType = inventory.originalStock - inventory.sold;
-//     let totalSold = 0;
-//     totalSold = totalSold + soldPerType;
-// }
-//
-// console.log(totalSold);
-
-// const totalSoldTvs = inventory.map((sold) => {
-//     let totalSold = 0;
-//     for (let i = 0; i < inventory.length; i++) {
-//         let perType = sold.originalStock - sold.sold;
-//         totalSold = totalSold + perType;
-//     }
-//     return totalSold;
-// })
-//
-// console.log(totalSoldTvs);
-
-// const totalSoldTvs = inventory.map((sold) => {
-//     return sold.originalStock - sold.sold;
-//     let totalSold = 0;
-//     for (let i = 0; i < totalSoldTvs.length; i++) {
-//         totalSold = totalSold + sold[i];
-//     }
-//     return totalSold;
-// })
-//
-// console.log(totalSoldTvs);
-
-// console.log(totalSold);
-
-/* dit berekent hoeveel er nog over zijn?? */
-// const totalSoldTvs = inventory.map((sold) => {
-//     return sold.originalStock - sold.sold;
-// })
-//
-// let totalSold = 0;
-// for (let i = 0; i < totalSoldTvs.length; i++) {
-//     totalSold = totalSold + totalSoldTvs[i];
-// }
-//
-// console.log(totalSold);
-
-const totalSoldTvs = inventory.map((sold) => {
-    return sold.sold;
-})
-
-let totalSold = 0;
-for (let i = 0; i < totalSoldTvs.length; i++) {
-    totalSold = totalSold + totalSoldTvs[i];
+function giveStringOfTvObject(tvObject) {
+    const tvBrand = tvObject.find((brands) => {
+        return brands.brand;
+    });
+    const tvType = tvObject.find((types) => {
+        return types.type;
+    });
+    const tvName = tvObject.find((names) => {
+        return names.name;
+    })
+    return tvBrand;
 }
 
-console.log(totalSold);
 
-// * **Opdracht 2b:** Zorg ervoor dat dit aantal _in het groen_ wordt weergegeven op de pagina.
-// * **Opdracht 2c:** Hoeveel tv's heeft Tech It Easy ingekocht? Schrijf een script dat dit berekent. Log de uitkomst in de
-// console.
+const hallo = giveStringOfTvObject(inventory5[1]);
+console.log(hallo);
 
-const totalBoughtTvs = inventory.map((bought) => {
-    return bought.originalStock;
-})
-
-let totalBougth = 0;
-for (let i = 0; i < totalBoughtTvs.length; i++) {
-    totalBougth = totalBougth + totalBoughtTvs[i];
-}
-
-console.log(totalBougth);
-
-// * **Opdracht 2d:** Zorg ervoor dat dit aantal _in het blauw_ wordt weergegeven op de pagina.
-// * **Opdracht 2e:** Geef _in het rood_ weer hoeveel tv's er nog verkocht moeten worden.
-
-const totalLeftTvs = inventory.map((sold) => {
-    return sold.originalStock - sold.sold;
-})
-
-let totalLeft = 0;
-for (let i = 0; i < totalLeftTvs.length; i++) {
-    totalLeft = totalLeft + totalLeftTvs[i];
-}
-
-console.log(totalLeft);
+const stringBrand = document.getElementById("brand");
+stringBrand.textContent = hallo;
