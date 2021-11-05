@@ -161,22 +161,44 @@ const inventory5 = [
     },
 ];
 
-function giveStringOfTvObject(tvObject) {
-    const tvBrand = tvObject.find((brands) => {
-        return brands.brand;
-    });
-    const tvType = tvObject.find((types) => {
-        return types.type;
-    });
-    const tvName = tvObject.find((names) => {
-        return names.name;
-    })
-    return tvBrand;
+// ** -------------------------------------------------- **
+// 4a: Zorg ervoor dat er een string wordt gegenereerd voor de naam van een tv. Maak een functie die één enkel tv-object verwacht en de naam samenvoegt.
+// ** -------------------------------------------------- **
+
+// function giveStringOfTvObject(tvObject) {
+//     const tvBrand = tvObject.find((brands) => {
+//         return brands.brand;
+//     });
+//     // const tvType = tvObject.find((types) => {
+//     //     return types.type;
+//     // });
+//     // const tvName = tvObject.find((names) => {
+//     //     return names.name;
+//     // })
+//     return tvBrand;
+// }
+//
+//
+// const hallo = giveStringOfTvObject(inventory5[1]);
+// console.log(hallo);
+
+// werkt ook niet
+// const stringBrand = document.getElementById("brand");
+// stringBrand.textContent = hallo;
+
+
+/* met behulp van uitwerking - maar werkt nog niet. Hoe kan dit? */
+function createTvName(tv) {
+    return '${tv.brand} ${tv.type} - ${tv.name}';
 }
 
+const stringTvName = createTvName(inventory5[1]);
+console.log(stringTvName);
 
-const hallo = giveStringOfTvObject(inventory5[1]);
-console.log(hallo);
+// ** -------------------------------------------------- **
+// 4b: Zorg ervoor dat de prijs van een tv netjes geformat wordt.
+// ** -------------------------------------------------- **
 
-const stringBrand = document.getElementById("brand");
-stringBrand.textContent = hallo;
+function createTvPrice(price) {
+    return '€${tv.price},-';
+}

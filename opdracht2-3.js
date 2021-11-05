@@ -276,6 +276,8 @@ logTotalLeft.textContent = totalLeft;
 // pagina weer te geven. Zorg ervoor dat dit ook zou werken als we 200 tv's in onze array zouden hebben staan. Dat er
 // dubbele namen in zitten, is niet erg.
 
+
+/* Hier krijg ik geen lijst maar alles achter elkaar*/
 const tvBrands = inventory.map((brands) => {
     return brands.brand;
 })
@@ -298,12 +300,29 @@ console.log(tvBrands);
 // onze scripts als functies op te zetten, zodat we ze gemakkelijk kunnen hergebruiken. _Tip_: vergeet deze functie
 // -declaratie niet aan te roepen!
 
-function giveAllTvBrands(tvsArray) {
-    const tvBrands = tvsArray.map((brands) => {
-        return brands.brand;
-    })
-    return tvBrands;
-}
+// Werkt geloof ik niet??
 
-const hallo = giveAllTvBrands(inventory);
-console.log(hallo);
+// function giveAllTvBrands(tvsArray) {
+//     const tvBrands = tvsArray.map((brands) => {
+//         return brands.brand;
+//     })
+//     return tvBrands;
+// }
+//
+// const hallo = giveAllTvBrands(inventory);
+// console.log(hallo);
+
+
+// Deze met uitwerkingen erbij gemaakt
+// function giveAllTvBrands(tvsArray) {
+//     const tvBrands = document.getElementById("brands-list");
+//
+//     inventory.map((tv) => {
+//         const listItem = document.createElement("li");
+//         listItem.textContent = tv.brand;
+//
+//         return tvBrands.appendChild(listItem);
+//     })
+// }
+//
+// giveAllTvBrands(inventory);
