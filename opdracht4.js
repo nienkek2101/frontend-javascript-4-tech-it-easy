@@ -6,14 +6,20 @@
 function createTvName(tv) {
     return `${tv.brand} ${tv.type} - ${tv.name}`;
 }
+//
+// const tvName = createTvName(inventory[2]);
+// console.log(tvName);
 
 // * **Opdracht 4b:** Zorg ervoor dat de prijs van een tv netjes geformat wordt. Maak een functie die één tv-prijs als
 // parameter verwacht (zoals `379`) en daar de volgende string van maakt: `€379,-`. Test of jouw functie ook werkt
 // wanneer er een andere tv-prijs wordt meegegeven.
 
 function createTvPrice(price) {
-    return '${price},-';
+    return `${price.price},-`;
 }
+//
+// const tvPrice = createTvPrice(inventory[1]);
+// console.log(tvPrice);
 
 
 // * **Opdracht 4c:** Zorg ervoor dat er een string wordt gegenereerd voor alle beschikbare schermgroottes van één tv, in
@@ -26,22 +32,64 @@ function createTvPrice(price) {
 
 // for loop voor het uitrekenen van inches naar cm's
 
-function createScreenSize(size) {
-    let sizeInInches = 0;
-    let sizeInCms = 0;
-    for (let i = 0; i < size.length; i++) {
-        sizeInInches = sizeInInches + size.availableSizes;
-        sizeInCms = sizeInCms + (size.availableSizes * 2.54);
+/* poging 1 */
+// function createScreenSize(size) {
+//     let sizeInInches = [];
+//     let sizeInCms = [];
+//     for (let i = 0; i < size.length; i++) {
+//         sizeInInches = size.availableSizes;
+//         sizeInCms = size.availableSizes * 2.54;
+//     }
+//     return sizeInInches + sizeInCms;
+// }
+//
+// const screenSizes = createScreenSize(inventory[3]);
+// console.log(screenSizes);
+
+/* poging 2 - 9-11 */
+function createScreenSizeString(size) {
+    let screenSizeString = "";
+    for (let i = 0; i < size.availableSizes.length; i++) {
+        // if (i === size.availableSizes.length - 1) {
+        //     screenSizeString += `${size.availableSizes[i]} inch (${size.availableSizes[i] * 2.54} cm)`;
+        // } else {
+            screenSizeString += `${size.availableSizes[i]} inch (${size.availableSizes[i] * 2.54} cm)`;
+        // }
+        if (i < size.availableSizes.length - 1) {
+            screenSizeString = `${screenSizeString} | `
+        }
     }
-    return sizeInInches + sizeInCms;
+    return screenSizeString;
 }
 
-const screenSizes = createScreenSize(inventory[3]);
-console.log(screenSizes);
+// const screenSizeString = createScreenSizeString(inventory[4]);
+// console.log(screenSizeString);
 
 // * **Opdracht 4d:** Zorg ervoor de informatie van één van de tv's zoals het voorbeeld wordt weergegeven op de pagina.
-// Gebruik hiervoor de functies die je hebt gemaakt in opdracht 5a, 5b en 5c.
+// Gebruik hiervoor de functies die je hebt gemaakt in opdracht 4a, 4b en 4c.
 
+/* Poging 1 */
+// function tvStringArray(tvArray) {
+//     const tvBlockPreview = document.getElementById('inventory-tvs');
+//     const tvBlock = tvArray.map((tv) => {
+//         return `${tv.brand} ${tv.type} - ${tv.name}
+//         ${tv.price},-
+//         ${tv.availableSizes[i]} inch (${tv.availableSizes[i] * 2.54} cm) |`
+//     })
+//     tvBlockPreview.innerHTML = `${tvBlock.join}`
+// }
+//
+// const tvBlockSite = tvStringArray(inventory[2]);
+// console.log(tvBlockSite);
+
+/* Poging 2*/
+const singleTvContainer = document.getElementById('inventory-tvs');
+
+singleTvContainer.innerHTML = `
+    <h3>${createTvName(inventory[3])}</h3>
+    <h4>${createTvPrice(inventory[3])}</h4>
+    <p>${createScreenSizeString(inventory[3])}</p>
+`;
 
 // * **Opdracht 4e:** Schrijf een functie die ALLE tv's weergeeft op de pagina zoals in het voorbeeld. Dit wil je
 // natuurlijk niet acht keer opnieuw schrijven, want nu zijn het 8 tv's, maar in de toekomst misschien wel 200!
@@ -49,3 +97,20 @@ console.log(screenSizes);
 // overkoepelende "tv-generator-functie" verwacht één parameter: de volledige array met tv-objecten. Vergeet 'm niet aan
 // te roepen!
 
+function generateTvList(tvArray) {
+    const tvModelList = document.getElementById('inventory-models');
+
+    const modelItems = tvArray.map((tvObject) => {
+        return `
+        <li>
+            <h3>${createTvName(tvObject)}</h3>
+            <h4>${createTvPrice(tvObject)}</h4>
+            <p>${createScreenSizeString(tvObject)}</p>
+        
+        </li>
+        `;
+    });
+    tvModelList.innerHTML = `${modelItems.join('')}`;
+}
+
+generateTvList(inventory);
